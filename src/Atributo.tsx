@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import './Atributo.css';
 
 interface AtributoProps {
-  nome: string; 
+  icone: string; 
 }
 
-export const Atributo: React.FC<AtributoProps> = ({ nome }) => {
+export const Atributo: React.FC<AtributoProps> = ({ icone }) => {
   const [valor, setValor] = useState<number>(0);
 
   const incrementar = () => {
@@ -14,7 +14,6 @@ export const Atributo: React.FC<AtributoProps> = ({ nome }) => {
 
   return (
     <div className="atributo-container">
-      <span className="atributo-nome">{nome}</span>
       
       <div className="coracoes-container">
         {[...Array(5)].map((_, index) => {
@@ -24,7 +23,7 @@ export const Atributo: React.FC<AtributoProps> = ({ nome }) => {
               key={index} 
               className={`coracao ${isColorido ? 'colorido' : 'apagado'}`}
             >
-              ❤️
+              {icone} 
             </span>
           );
         })}
@@ -36,3 +35,4 @@ export const Atributo: React.FC<AtributoProps> = ({ nome }) => {
     </div>
   );
 };
+
