@@ -51,7 +51,6 @@ export default function EMOJI() {
         }
     }
     
-    
     return (
         <div className="emoji-card">
             <div className="EMOJI">
@@ -67,11 +66,13 @@ export default function EMOJI() {
 
             
             <div className="secao-atributos">
-                <Atributo nome="Vivo" />
-                <Atributo nome="Doente" />
-                <Atributo nome="Morto" />
+                <Atributo icone="❤️" />
+                <Atributo icone="⚡" />
+                <Atributo icone="💧" />
+                <Atributo icone="🍗" />
             </div>
         </div>
     );
 }
+
 
