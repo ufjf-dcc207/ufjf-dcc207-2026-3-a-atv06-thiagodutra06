@@ -12,7 +12,6 @@ const EMOJI_MAP = new Map<EMOJI_KEYS, string>([
 
 export default function EMOJI() {
     
-    
     const [emojiStatus, setEmojiStatus] = useState<EMOJI_KEYS>("sick");
 
     function happyClick() {
@@ -35,6 +34,23 @@ export default function EMOJI() {
         setEmojiStatus("dead"); 
         console.log("Status atual (na fila de atualização): ", emojiStatus);
     }
+
+    function cicleClick() {
+        
+        switch (emojiStatus) {
+            case "dead":
+                setEmojiStatus("happy");
+                break;
+            case "happy":
+                setEmojiStatus("sick"); 
+                break;
+            case "sick":
+                setEmojiStatus("dead"); 
+                break;
+            default:
+                setEmojiStatus("happy"); 
+        }
+    }
     
     return (
         <>
@@ -43,9 +59,10 @@ export default function EMOJI() {
             </div>
             <div className="acoes">
                 <button onClick={happyClick}>happy</button>
-                
                 <button onClick={sickClick}>sick</button>
                 <button onClick={deadClick}>dead</button>
+                
+                <button onClick={cicleClick}>Cicle</button>
             </div>
         </>
     );
