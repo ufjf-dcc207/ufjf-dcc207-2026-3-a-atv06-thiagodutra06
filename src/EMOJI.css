@@ -1,4 +1,19 @@
-.EMOJI {
-    margin: 1em;
-    font-size: 4em;
+.atributo-container {
+  display: flex;
+  align-items: center;
+}
+
+.coracao {
+  margin: 1em;
+  font-size: 4em;
+  transition: transform 0.2s, filter 0.2s; /* Opcional: deixa a mudança mais suave */
+}
+
+.coracao.colorido {
+  scale: 1.1;
+}
+
+.coracao.apagado {
+  filter: grayscale(100%);
+  opacity: 0.4;
 }

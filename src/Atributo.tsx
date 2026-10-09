@@ -6,7 +6,6 @@ interface AtributoProps {
 }
 
 export const Atributo: React.FC<AtributoProps> = ({ nome }) => {
-  
   const [valor, setValor] = useState<number>(0);
 
   const incrementar = () => {
@@ -19,7 +18,6 @@ export const Atributo: React.FC<AtributoProps> = ({ nome }) => {
       
       <div className="coracoes-container">
         {[...Array(5)].map((_, index) => {
-          
           const isColorido = index < valor;
           return (
             <span 
