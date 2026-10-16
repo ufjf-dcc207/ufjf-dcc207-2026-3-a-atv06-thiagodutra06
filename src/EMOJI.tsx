@@ -24,7 +24,6 @@ export default function Emoji() {
         if (situacao === "dead") return;
         setFome((fomeAtual) => Math.min(fomeAtual + 1, 5));
         
-        
         if (situacao === "sick" && fome + 1 >= 3 && sede >= 3) {
             setSituacao("happy");
         }
@@ -50,14 +49,12 @@ export default function Emoji() {
     function onCiclo() {
         if (situacao === "dead") return;
 
-        
         const novaFome = Math.max(fome - 1, 0);
         const novaSede = Math.max(sede - 1, 0);
 
         setFome(novaFome);
         setSede(novaSede);
 
-        
         if (novaFome === 0 || novaSede === 0) {
             setSituacao("dead");
         } else if (novaFome <= 2 || novaSede <= 2) {
@@ -91,6 +88,7 @@ export default function Emoji() {
         </div>
     );
 }
+
 
 
 
