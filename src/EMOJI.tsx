@@ -1,6 +1,6 @@
 import "./Emoji.css";
 import { useState } from "react";
-import Atributo from "./Atributo"; 
+import Atributo from "./Atributo";
 
 type Situacao = "happy" | "sick" | "dead";
 
@@ -11,7 +11,6 @@ const EMOJIS = new Map<Situacao, string>([
 ]);
 
 export default function Emoji() {
-    
     const [situacao, setSituacao] = useState<Situacao>("happy");
     const [saude, setSaude] = useState<number>(4);
     const [energia, setEnergia] = useState<number>(3);
@@ -19,13 +18,11 @@ export default function Emoji() {
     const [comida, setComida] = useState<number>(1);
 
     function onAlimentar() {
-        if (situacao === "dead") return;
-        setComida((atual) => Math.min(atual + 1, 5));
+        setComida(Math.min(5, comida + 1));
     }
 
     function onHidratar() {
-        if (situacao === "dead") return;
-        setAgua((atual) => Math.min(atual + 1, 5));
+        setAgua(Math.min(5, agua + 1));
     }
 
     function onLigarDesligar() {
@@ -34,26 +31,31 @@ export default function Emoji() {
     }
 
     function onCiclo() {
-        if (situacao === "dead") return;
-
-        const novaComida = Math.max(comida - 1, 0);
-        const novaAgua = Math.max(agua - 1, 0);
-        const novaEnergia = Math.max(energia - 1, 0);
-
-        setComida(novaComida);
-        setAgua(novaAgua);
-        setEnergia(novaEnergia);
-
-        if (novaComida === 0 || novaAgua === 0 || novaEnergia === 0) {
-            setSituacao("dead");
-            setSaude(0);
-        } else if (novaComida <= 2 || novaAgua <= 2 || novaEnergia <= 2) {
-            setSituacao("sick");
-            setSaude((atual) => Math.max(atual - 1, 1));
-        } else {
-            setSituacao("happy");
-            setSaude(4);
+        setComida((c) => Math.max(0, c - 1));
+        setAgua((a) => Math.max(0, a - 1));
+        setEnergia((s) => Math.max(0, s - 1));
+        
+        if (comida === 0) {
+            setSaude((s) => Math.max(0, s - 1));
         }
+        if (agua === 0) {
+            setSaude((s) => Math.max(0, s - 1));
+        }
+        if (energia === 0) {
+            setSaude((s) => Math.max(0, s - 1));
+        }
+
+        
+        setSaude((atual) => {
+            if (atual <= 0) {
+                setSituacao("dead");
+            } else if (atual <= 2) {
+                setSituacao("sick");
+            } else {
+                setSituacao("happy");
+            }
+            return atual;
+        });
     }
 
     return (
@@ -78,6 +80,9 @@ export default function Emoji() {
         </div>
     );
 }
+
+
+
 
 
 
