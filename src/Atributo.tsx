@@ -1,18 +1,18 @@
 import "./Atributo.css";
 
-
-export interface AtributoProps {
+type AtributoProps = {
     icone: string;
-    valor: number; 
-}
+    valor: number;
+};
 
-export function Atributo({ icone, valor }: AtributoProps) {
+export default function Atributo({ icone, valor }: AtributoProps) {
     return (
         <div className="atributo">
-            <span className="icone">{icone}</span>
-            <span className="valor">{valor}</span>
+            <span className="ativo">{icone.repeat(valor)}</span>
+            <span className="inativo">{icone.repeat(5 - valor)}</span>
         </div>
     );
 }
+
 
 
